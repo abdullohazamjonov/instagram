@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import login from "../../assets/login.png";
+import login from "../../../assets/login.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ const Login = () => {
     e.preventDefault();
 
     if (username === "admin" && password === "12345") {
-      localStorage.setItem("user", username);
-      navigate("/home");
+      localStorage.setItem("user", true);
+      navigate("/");
     } else {
       alert("Login yoki parol noto'g'ri!");
     }
