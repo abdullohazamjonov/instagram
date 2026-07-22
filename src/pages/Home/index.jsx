@@ -1,6 +1,7 @@
 import Sidebar from "../../components/Sidebar";
 import Feed from "../../components/Feed";
 import RightSidebar from "../../components/RightSidebar";
+import Danger from "../../components/Danger";
 
 const Home = () => {
   return (
