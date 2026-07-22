@@ -7,13 +7,11 @@ import {
 } from "react-icons/fi";
 import post1 from "../../assets/post_1.png"
 import post2 from "../../assets/post_2.png"
-
 import {
   BsBookmark,
   BsBookmarkFill,
   BsHeartFill,
 } from "react-icons/bs";
-
 const Post = ({
   profile,
   username,
@@ -25,7 +23,6 @@ const Post = ({
   const [saved, setSaved] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
   const [comment, setComment] = useState("");
-
   const handleLike = () => {
     if (liked) {
       setLiked(false);

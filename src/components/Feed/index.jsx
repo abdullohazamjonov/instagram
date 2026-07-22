@@ -1,5 +1,4 @@
 import Post from "../Post";
-
 import feed1 from "../../assets/Feed_1.png";
 import feed2 from "../../assets/Feed_2.png";
 

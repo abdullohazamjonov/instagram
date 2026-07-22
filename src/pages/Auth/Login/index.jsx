@@ -4,13 +4,10 @@ import login from "../../../assets/login.png";
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const handleLogin = (e) => {
     e.preventDefault();
-
     if (username === "admin" && password === "12345") {
       localStorage.setItem("user", true);
       navigate("/");
