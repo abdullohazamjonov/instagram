@@ -1,3 +1,4 @@
+import Story from "../Story";
 import Post from "../Post";
 import feed1 from "../../assets/Feed_1.png";
 import feed2 from "../../assets/Feed_2.png";
@@ -24,6 +25,12 @@ const posts = [
 const Feed = () => {
   return (
     <div className="w-[630px] mt-8">
+      {/* Stories */}
+      <div className="bg-white border rounded-lg mb-6 px-4">
+        <Story />
+      </div>
+
+      {/* Posts */}
       {posts.map((post) => (
         <Post key={post.id} {...post} />
       ))}

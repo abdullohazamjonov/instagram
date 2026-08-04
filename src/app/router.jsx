@@ -4,10 +4,9 @@ import PublicRoute from "../pages/Auth/Public";
 import PrivateRoute from "../pages/Auth/Private";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-
+import Search from "../components/Search";
 import Profil from "../components/Profil";
 import Profil2 from "../components/profil_2";
-
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -28,6 +27,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "search",
+        element: <Search />,
       },
       {
         path: "profile",
