@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft, FiSearch, FiPlay } from "react-icons/fi";
+import axios from "axios";
 
 import feed1 from "../../assets/Feed_1.png";
 import feed2 from "../../assets/Feed_2.png";
@@ -70,17 +71,59 @@ export default function Search() {
     search.trim() === ""
       ? []
       : users.filter(
-          (u) =>
-            u.username.toLowerCase().includes(search.toLowerCase()) ||
-            u.fullname.toLowerCase().includes(search.toLowerCase())
-        );
+        (u) =>
+          u.username.toLowerCase().includes(search.toLowerCase()) ||
+          u.fullname.toLowerCase().includes(search.toLowerCase())
+      );
 
   const postResult =
     search.trim() === ""
       ? posts
       : posts.filter((p) =>
-          p.title.toLowerCase().includes(search.toLowerCase())
-        );
+        p.title.toLowerCase().includes(search.toLowerCase())
+      );
+
+  const API_KEY = "563492ad6f9170000100000140aab26a784142cba295401ac47d41ab";
+
+  const getExplorePosts = async () => {
+    const query = [
+      "nature",
+      "travel",
+      "cars",
+      "anime",
+      "football",
+      "technology",
+      "gaming",
+      "city",
+      "animals",
+      "food",
+    ];
+
+    const random =
+      query[Math.floor(Math.random() * query.length)];
+
+    const res = await axios.get(
+      `https://api.pexels.com/v1/search?query=${random}&per_page=30`,
+      {
+        headers: {
+          Authorization: API_KEY,
+        },
+      }
+    );
+
+    return res.data.photos;
+  };
+
+  const [explorePosts, setExplorePosts] = useState([]);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      const data = await getExplorePosts();
+      setExplorePosts(data);
+    };
+
+    loadPosts();
+  }, []);
 
   return (
     <div className="ml-[250px] p-8 bg-white min-h-screen">
@@ -136,26 +179,21 @@ export default function Search() {
         </>
       )}
       <h2 className="font-semibold text-lg mt-8 mb-4">Explore</h2>
-      <div className="grid grid-cols-3 gap-2 max-w-4xl">
-        {postResult.map((p) => (
-          <div
-            key={p.id}
-            className="relative cursor-pointer group"
-          >
-            <img
-              src={p.image}
-              alt={p.title}
-              className="w-full h-48 object-cover"
-            />
-            {p.video && (
-              <FiPlay
-                className="absolute top-3 right-3 text-white"
-                size={22}
-              />
-            )}
-            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition"></div>
-          </div>
-        ))}
+      <div className="flex gap-4 flex-wrap">
+        {explorePosts.map((post) => (
+    <div
+      key={post.id}
+      className="relative group cursor-pointer"
+    >
+      <img
+        src={post.src.large}
+        alt={post.alt}
+        className="w-[300px] h-[300px] object-cover rounded-xl"
+      />
+
+      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition rounded-xl" />
+    </div>
+  ))}
       </div>
     </div>
   );
