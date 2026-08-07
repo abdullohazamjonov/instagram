@@ -15,13 +15,13 @@ import Danger from "../Danger";
 import sidebar from "../../assets/sidebar.png";
 
 const menus = [
-  { icon: <FiHome size={26} />, title: "Home", path: "/" },
-  { icon: <FiSearch size={26} />, title: "Search", path: "/search" },
-  { icon: <FiCompass size={26} />, title: "Explore", path: "/explore" },
-  { icon: <MdOutlineSlowMotionVideo size={26} />, title: "Reels", path: "/reels" },
-  { icon: <RiMessengerLine size={26} />, title: "Messages", path: "/messages" },
-  { icon: <FiHeart size={26} />, title: "Notifications", path: "/notifications" },
-  { icon: <FiPlusSquare size={26} />, title: "Create", path: "/create" },
+  { icon: <FiHome size={28} />, title: "Home", path: "/" },
+  { icon: <FiSearch size={28} />, title: "Search", path: "/search" },
+  { icon: <FiCompass size={28} />, title: "Explore", path: "/explore" },
+  { icon: <MdOutlineSlowMotionVideo size={28} />, title: "Reels", path: "/reels" },
+  { icon: <RiMessengerLine size={28} />, title: "Messages", path: "/messages" },
+  { icon: <FiHeart size={28} />, title: "Notifications", path: "/notifications" },
+  { icon: <FiPlusSquare size={28} />, title: "Create", path: "/create" },
 ];
 
 const Sidebar = () => {
