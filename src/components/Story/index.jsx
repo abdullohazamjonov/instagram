@@ -1,50 +1,61 @@
+import { useState } from "react";
+
+import story1 from "../../assets/story_1.png";
+import story2 from "../../assets/story_2.png";
+import story3 from "../../assets/story_3.png";
+
 const stories = [
   {
     id: 1,
-    title: "Travel",
-    image: "https://i.pravatar.cc/150?img=11",
+    name: "Johin",
+    image: story1,
   },
   {
     id: 2,
-    title: "Food",
-    image: "https://i.pravatar.cc/150?img=12",
+    name: "Asad",
+    image: story2,
   },
   {
     id: 3,
-    title: "Life",
-    image: "https://i.pravatar.cc/150?img=13",
-  },
-  {
-    id: 4,
-    title: "Sport",
-    image: "https://i.pravatar.cc/150?img=14",
-  },
-  {
-    id: 5,
-    title: "Games",
-    image: "https://i.pravatar.cc/150?img=15",
+    name: "Bexruz",
+    image: story3,
   },
 ];
 
-export default function Story() {
+export default function Stories() {
+  const [selectedStory, setSelectedStory] = useState(null);
+
   return (
-    <div className="flex gap-8 overflow-x-auto py-6 scrollbar-hide">
-      {stories.map((story) => (
-        <div
-          key={story.id}
-          className="flex flex-col items-center cursor-pointer"
-        >
-          <div className="w-20 h-20 rounded-full border-2 border-gray-300 p-1 hover:border-pink-500 transition">
+    <>
+      <div className="flex gap-5">
+        {stories.map((story) => (
+          <div
+            key={story.id}
+            className="cursor-pointer text-center"
+            onClick={() => setSelectedStory(story.image)}
+          >
             <img
               src={story.image}
-              alt={story.title}
-              className="w-full h-full rounded-full object-cover"
+              alt={story.name}
+              className="w-20 h-20 rounded-full border-2 border-pink-500"
             />
+            <p>{story.name}</p>
           </div>
+        ))}
+      </div>
 
-          <p className="text-sm mt-2">{story.title}</p>
+      {selectedStory && (
+        <div
+          className="fixed inset-0 bg-black/80 flex justify-center items-center"
+          onClick={() => setSelectedStory(null)}
+        >
+          <img
+            src={selectedStory}
+            alt="Story"
+            className="max-w-[90%] max-h-[90%] rounded-xl"
+          />
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 }
